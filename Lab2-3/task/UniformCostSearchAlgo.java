@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class UniformCostSearchAlgo implements ISearchAlgo {
 
+	//task 4
 	@Override
 	public Node execute(Node root, String goal) {
 		PriorityQueue<Node> frontier = new PriorityQueue<>(new NodeComparator());

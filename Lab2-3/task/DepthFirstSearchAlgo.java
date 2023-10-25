@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class DepthFirstSearchAlgo implements ISearchAlgo {
 
+	//task 1
 	@Override
 	public Node execute(Node root, String goal) {
 		// TODO Auto-generated method stub
@@ -32,9 +33,30 @@ public class DepthFirstSearchAlgo implements ISearchAlgo {
 		return null;
 	}
 
+	//task 2
 	@Override
 	public Node execute(Node root, String start, String goal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        boolean check = false;
+        Stack<Node> frontier = new Stack<Node>();
+        List<Node> explored = new ArrayList<>();
+        frontier.push(root);
+        while (!frontier.isEmpty()) {
+            Node current = frontier.pop();
+            explored.add(current);
+            // meet the start point
+            if (current.getLabel().equals(goal) && check) return current;
+            if (current.getLabel().equals(start)) {
+                check = true;
+                frontier.clear();
+                explored.clear();
+                current.setParent(null);
+            }
+            for (Node child : current.getChildrenNodes()) {
+                if (frontier.contains(child) || explored.contains(child)) continue;
+                frontier.push(child);
+                child.setParent(current);
+            }
+        }
+        return null;
+    }
 }
